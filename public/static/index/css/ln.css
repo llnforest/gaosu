@@ -1,0 +1,32 @@
+/********* form *****************/
+.ln-form-area{
+	width:90%;
+	padding-top:30%;
+	margin:0 auto 10% auto;
+}
+input.ln-form-input,
+.ln-form-input{
+	width:100%;
+	height:50px;
+	border: none;
+	padding-left:20%;
+	border-bottom:1px solid rgba(0,0,0,.2);
+	line-height:50px;
+	border-radius: 0;
+}
+input.input-short{
+	width:55%;
+}
+input.ln-form-input:focus{
+	border-bottom:1px solid #f4868c;
+}
+.ln-form-row label{
+	position:absolute;
+	padding-left:8px;
+	line-height: 50px;
+}
+.ln-form-row .btn-left{
+	width: 40%;
+    float: right;
+    height: 50px;
+}
