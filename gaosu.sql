@@ -11,7 +11,7 @@
  Target Server Version : 50719
  File Encoding         : 65001
 
- Date: 25/10/2019 17:23:07
+ Date: 12/11/2019 16:18:10
 */
 
 SET NAMES utf8mb4;
@@ -57,7 +57,7 @@ CREATE TABLE `sys_dict`  (
 -- ----------------------------
 -- Records of sys_dict
 -- ----------------------------
-INSERT INTO `sys_dict` VALUES (1, '菜单类型', 'menuType', 1, '', NULL, '2019-04-15 17:36:00');
+INSERT INTO `sys_dict` VALUES (1, '菜单类型', 'menuType', 1, '', NULL, '2019-11-01 17:36:23');
 INSERT INTO `sys_dict` VALUES (19, '日志级别', 'logLevel', 2, '', '2019-04-19 10:04:33', '2019-04-19 10:04:56');
 INSERT INTO `sys_dict` VALUES (20, '按钮类别', 'btnType', 3, '', '2019-04-19 10:05:29', '2019-04-19 10:05:29');
 INSERT INTO `sys_dict` VALUES (21, '状态', 'status', 4, '', '2019-04-19 10:23:17', '2019-04-19 10:23:17');
@@ -115,7 +115,7 @@ CREATE TABLE `sys_log`  (
   `log` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '日志备注',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '操作时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 51 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统行为日志表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 53 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统行为日志表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_log
@@ -170,6 +170,8 @@ INSERT INTO `sys_log` VALUES (47, 1, '超管', '系统登录', '登录', '127.0.
 INSERT INTO `sys_log` VALUES (48, 1, '超管', '系统登录', '登录', '127.0.0.1', 'admin/index/login', '', '2019-05-29 18:10:19');
 INSERT INTO `sys_log` VALUES (49, 1, '超管', '系统登录', '登录', '::1', 'admin/index/login', '', '2019-10-08 11:39:09');
 INSERT INTO `sys_log` VALUES (50, 1, '超管', '系统登录', '登录', '::1', 'admin/index/login', '', '2019-10-25 17:00:44');
+INSERT INTO `sys_log` VALUES (51, 1, '超管', '系统登录', '登录', '::1', 'admin/index/login', '', '2019-10-31 16:36:56');
+INSERT INTO `sys_log` VALUES (52, 1, '超管', '系统登录', '登录', '::1', 'admin/index/login', '', '2019-11-01 17:35:19');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -192,46 +194,44 @@ CREATE TABLE `sys_menu`  (
   `status` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '状态，1启用，0停用',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `parent_id`(`parent_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 38 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '后台菜单表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 42 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '后台菜单表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
 INSERT INTO `sys_menu` VALUES (1, 0, '', '系统管理', '<i class=\'layui-icon layui-icon-app\'></i>  ', 'M', '', '', NULL, 0, '', 1000, '', 1);
-INSERT INTO `sys_menu` VALUES (2, 1, 'admin/menu/index', '菜单管理', '<i class=\'layui-icon layui-icon-tabs\'></i>', 'M', '', '', NULL, 0, '', 1100, '', 1);
-INSERT INTO `sys_menu` VALUES (4, 0, '', '业务管理', '', 'M', '', '', NULL, 0, '', 2000, '', 1);
-INSERT INTO `sys_menu` VALUES (5, 4, '', '测试菜单', '', 'M', '', '', NULL, 0, '', 2100, '', 1);
-INSERT INTO `sys_menu` VALUES (6, 2, 'admin/menu/add', '新增', '<i class=\'layui-icon layui-icon-add-circle-fine\'></i>', 'B', '', 'add', 1, 0, '', 1101, '', 1);
-INSERT INTO `sys_menu` VALUES (7, 1, 'admin/dict/index', '字典管理', '<i class=\'layui-icon layui-icon-read\'></i>', 'M', '', '', NULL, 0, '', 1200, '', 1);
-INSERT INTO `sys_menu` VALUES (8, 9, 'admin/dictvalue/index', '字典参数', '<i class=\'layui-icon layui-icon-list\'></i>', 'B', '', 'showValue', 2, 0, '', 1219, '', 1);
-INSERT INTO `sys_menu` VALUES (9, 7, 'admin/dict/index', '字典管理', '', 'T', '', '', NULL, 0, '', 1210, '', 1);
-INSERT INTO `sys_menu` VALUES (10, 7, 'admin/dictvalue/index', '字典参数', '', 'T', '', '', NULL, 0, '', 1220, '', 1);
-INSERT INTO `sys_menu` VALUES (11, 9, 'admin/dict/add', '新增', '<i class=\'layui-icon layui-icon-add-circle-fine\'></i>', 'B', '', 'add', 1, 0, '', 1212, '', 1);
-INSERT INTO `sys_menu` VALUES (12, 9, 'admin/dict/del', '删除', '<i class=\'layui-icon layui-icon-delete\'></i>', 'B', '#FF5722', 'del', 2, 0, '', 1211, '', 1);
-INSERT INTO `sys_menu` VALUES (13, 10, 'admin/dictvalue/add', '新增', '<i class=\'layui-icon layui-icon-add-circle-fine\'></i>', 'B', '', 'add', 1, 0, '', 1221, '', 1);
-INSERT INTO `sys_menu` VALUES (14, 10, 'admin/dictvalue/del', '删除', '<i class=\'layui-icon layui-icon-delete\'></i>', 'B', '#FF5722', 'del', 2, 0, '', 1221, '', 1);
-INSERT INTO `sys_menu` VALUES (15, 10, 'admin/dictvalue/delBatch', '批量删除', '<i class=\'layui-icon layui-icon-delete\'></i>', 'B', '#FF5722', 'delBatch', 1, 0, '', 1229, '', 1);
-INSERT INTO `sys_menu` VALUES (16, 10, 'admin/dictvalue/edit', '编辑', '<i class=\'layui-icon layui-icon-edit\'></i>', 'B', '', 'edit', 2, 0, '', 1228, '', 1);
-INSERT INTO `sys_menu` VALUES (17, 9, 'admin/dict/edit', '编辑', '<i class=\'layui-icon layui-icon-edit\'></i>', 'B', '', 'edit', 2, 0, '', 1218, '', 1);
-INSERT INTO `sys_menu` VALUES (18, 2, 'admin/menu/add', '添加下级', '<i class=\'layui-icon layui-icon-add-circle-fine\'></i>', 'B', '#5fb878', 'addDown', 2, 0, '', 1109, '', 1);
-INSERT INTO `sys_menu` VALUES (19, 2, 'admin/menu/edit', '编辑', '<i class=\'layui-icon layui-icon-edit\'></i>', 'B', '', 'edit', 2, 0, '', 1108, '', 1);
-INSERT INTO `sys_menu` VALUES (20, 2, 'admin/menu/del', '删除', '<i class=\'layui-icon layui-icon-delete\'></i>', 'B', '#FF5722', 'del', 2, 0, '', 1100, '', 1);
-INSERT INTO `sys_menu` VALUES (21, 1, 'admin/role/index', '角色管理', '<i class=\'layui-icon layui-icon-group\'></i>', 'M', '', '', 1, 0, '', 1300, '', 1);
-INSERT INTO `sys_menu` VALUES (22, 21, 'admin/role/del', '删除', '<i class=\'layui-icon layui-icon-delete\'></i>', 'B', '#FF5722', 'del', 2, 1, 'id:{id}', 1301, '', 1);
-INSERT INTO `sys_menu` VALUES (24, 21, 'admin/role/add', '新增', '<i class=\'layui-icon layui-icon-add-circle-fine\'></i>', 'B', '', 'add', 1, 0, '', 1301, '', 1);
-INSERT INTO `sys_menu` VALUES (25, 21, 'admin/role/edit', '编辑', '<i class=\'layui-icon layui-icon-edit\'></i>', 'B', '', 'edit', 2, 0, 'id:{id}', 1302, '', 1);
-INSERT INTO `sys_menu` VALUES (26, 21, 'admin/role/auth', '权限', '<i class=\'layui-icon layui-icon-link\'></i>', 'B', '#5fb878', 'auth', 2, 0, 'id:{id}', 1309, '', 1);
-INSERT INTO `sys_menu` VALUES (27, 1, 'admin/user/index', '用户管理', '<i class=\'layui-icon layui-icon-user\'></i>', 'M', '', '', 1, 0, '', 1400, '', 1);
-INSERT INTO `sys_menu` VALUES (28, 27, 'admin/user/del', '删除', '<i class=\'layui-icon layui-icon-delete\'></i>', 'B', '#FF5722', 'del', 2, 1, 'id:{id}', 1401, '', 1);
-INSERT INTO `sys_menu` VALUES (29, 27, 'admin/user/add', '新增', '<i class=\'layui-icon layui-icon-add-circle-fine\'></i>', 'B', '', 'add', 1, 0, '', 1402, '', 1);
-INSERT INTO `sys_menu` VALUES (30, 27, 'admin/user/edit', '编辑', '<i class=\'layui-icon layui-icon-edit\'></i>', 'B', '', 'edit', 2, 0, 'id:{id}', 1401, '', 1);
-INSERT INTO `sys_menu` VALUES (31, 27, 'admin/user/resetPassword', '重置密码', '<i class=\'layui-icon layui-icon-refresh\'></i>', 'B', '#5fb878', 'resetPassword', 2, 1, 'id:{id}', 1409, '默认重置密码后为123456', 1);
-INSERT INTO `sys_menu` VALUES (32, 1, 'admin/config/index', '配置管理', '<i class=\'layui-icon layui-icon-set-sm\'></i>', 'M', '', '', 1, 0, '', 1500, '', 1);
-INSERT INTO `sys_menu` VALUES (33, 32, 'admin/config/add', '新增', '<i class=\'layui-icon layui-icon-add-circle\'></i>', 'B', '', 'add', 1, 1, 'config_code:{config_code},config_name:{config_name}', 1501, '', 1);
-INSERT INTO `sys_menu` VALUES (34, 32, 'admin/config/del', '删除', '<i class=\'layui-icon layui-icon-delete\'></i>', 'B', '#FF5722', 'del', 2, 1, 'id:{id}', 1501, '', 1);
-INSERT INTO `sys_menu` VALUES (35, 32, 'admin/config/edit', '编辑', '<i class=\'layui-icon layui-icon-edit\'></i>', 'B', '', 'edit', 2, 1, 'id:{id}', 1509, '', 1);
-INSERT INTO `sys_menu` VALUES (36, 1, 'admin/log/index', '日志管理', '<i class=\'layui-icon layui-icon-file-b\'></i>', 'M', '', '', 1, 0, '', 1600, '', 1);
-INSERT INTO `sys_menu` VALUES (37, 32, 'admin/config/clearCache', '清除缓存', '<i class=\'layui-icon layui-icon-delete\'></i>', 'B', '#ff5722', 'clearCache', 1, 1, '', 1502, '', 1);
+INSERT INTO `sys_menu` VALUES (2, 1, 'admin/sysmenu/index', '菜单管理', '<i class=\'layui-icon layui-icon-tabs\'></i>', 'M', '', '', NULL, 0, '', 1400, '', 1);
+INSERT INTO `sys_menu` VALUES (6, 2, 'admin/sysmenu/add', '新增', '<i class=\'layui-icon layui-icon-add-circle-fine\'></i>', 'B', '', 'add', 1, 0, '', 1401, '', 1);
+INSERT INTO `sys_menu` VALUES (7, 1, 'admin/sysdict/index', '字典管理', '<i class=\'layui-icon layui-icon-read\'></i>', 'M', '', '', NULL, 0, '', 1200, '', 1);
+INSERT INTO `sys_menu` VALUES (8, 9, 'admin/sysdictvalue/index', '字典参数', '<i class=\'layui-icon layui-icon-list\'></i>', 'B', '', 'showValue', 2, 0, '', 1219, '', 1);
+INSERT INTO `sys_menu` VALUES (9, 7, 'admin/sysdict/index', '字典管理', '', 'T', '', '', NULL, 0, '', 1210, '', 1);
+INSERT INTO `sys_menu` VALUES (10, 7, 'admin/sysdictvalue/index', '字典参数', '', 'T', '', '', NULL, 0, '', 1220, '', 1);
+INSERT INTO `sys_menu` VALUES (11, 9, 'admin/sysdict/add', '新增', '<i class=\'layui-icon layui-icon-add-circle-fine\'></i>', 'B', '', 'add', 1, 0, '', 1212, '', 1);
+INSERT INTO `sys_menu` VALUES (12, 9, 'admin/sysdict/del', '删除', '<i class=\'layui-icon layui-icon-delete\'></i>', 'B', '#FF5722', 'del', 2, 0, '', 1211, '', 1);
+INSERT INTO `sys_menu` VALUES (13, 10, 'admin/sysdictvalue/add', '新增', '<i class=\'layui-icon layui-icon-add-circle-fine\'></i>', 'B', '', 'add', 1, 0, '', 1221, '', 1);
+INSERT INTO `sys_menu` VALUES (14, 10, 'admin/sysdictvalue/del', '删除', '<i class=\'layui-icon layui-icon-delete\'></i>', 'B', '#FF5722', 'del', 2, 0, '', 1221, '', 1);
+INSERT INTO `sys_menu` VALUES (15, 10, 'admin/sysdictvalue/delBatch', '批量删除', '<i class=\'layui-icon layui-icon-delete\'></i>', 'B', '#FF5722', 'delBatch', 1, 0, '', 1229, '', 1);
+INSERT INTO `sys_menu` VALUES (16, 10, 'admin/sysdictvalue/edit', '编辑', '<i class=\'layui-icon layui-icon-edit\'></i>', 'B', '', 'edit', 2, 0, '', 1228, '', 1);
+INSERT INTO `sys_menu` VALUES (17, 9, 'admin/sysdict/edit', '编辑', '<i class=\'layui-icon layui-icon-edit\'></i>', 'B', '', 'edit', 2, 0, '', 1218, '', 1);
+INSERT INTO `sys_menu` VALUES (18, 2, 'admin/sysmenu/add', '添加下级', '<i class=\'layui-icon layui-icon-add-circle-fine\'></i>', 'B', '#5fb878', 'addDown', 2, 0, '', 1409, '', 1);
+INSERT INTO `sys_menu` VALUES (19, 2, 'admin/sysmenu/edit', '编辑', '<i class=\'layui-icon layui-icon-edit\'></i>', 'B', '', 'edit', 2, 0, '', 1108, '', 1);
+INSERT INTO `sys_menu` VALUES (20, 2, 'admin/sysmenu/del', '删除', '<i class=\'layui-icon layui-icon-delete\'></i>', 'B', '#FF5722', 'del', 2, 0, '', 1400, '', 1);
+INSERT INTO `sys_menu` VALUES (21, 1, 'admin/sysrole/index', '角色管理', '<i class=\'layui-icon layui-icon-group\'></i>', 'M', '', '', 1, 0, '', 1300, '', 1);
+INSERT INTO `sys_menu` VALUES (22, 21, 'admin/sysrole/del', '删除', '<i class=\'layui-icon layui-icon-delete\'></i>', 'B', '#FF5722', 'del', 2, 1, 'id:{id}', 1301, '', 1);
+INSERT INTO `sys_menu` VALUES (24, 21, 'admin/sysrole/add', '新增', '<i class=\'layui-icon layui-icon-add-circle-fine\'></i>', 'B', '', 'add', 1, 0, '', 1301, '', 1);
+INSERT INTO `sys_menu` VALUES (25, 21, 'admin/sysrole/edit', '编辑', '<i class=\'layui-icon layui-icon-edit\'></i>', 'B', '', 'edit', 2, 0, 'id:{id}', 1302, '', 1);
+INSERT INTO `sys_menu` VALUES (26, 21, 'admin/sysrole/auth', '权限', '<i class=\'layui-icon layui-icon-link\'></i>', 'B', '#5fb878', 'auth', 2, 0, 'id:{id}', 1309, '', 1);
+INSERT INTO `sys_menu` VALUES (27, 1, 'admin/sysuser/index', '用户管理', '<i class=\'layui-icon layui-icon-user\'></i>', 'M', '', '', 1, 0, '', 1100, '', 1);
+INSERT INTO `sys_menu` VALUES (28, 27, 'admin/sysuser/del', '删除', '<i class=\'layui-icon layui-icon-delete\'></i>', 'B', '#FF5722', 'del', 2, 1, 'id:{id}', 1101, '', 1);
+INSERT INTO `sys_menu` VALUES (29, 27, 'admin/sysuser/add', '新增', '<i class=\'layui-icon layui-icon-add-circle-fine\'></i>', 'B', '', 'add', 1, 0, '', 1102, '', 1);
+INSERT INTO `sys_menu` VALUES (30, 27, 'admin/sysuser/edit', '编辑', '<i class=\'layui-icon layui-icon-edit\'></i>', 'B', '', 'edit', 2, 0, 'id:{id}', 1101, '', 1);
+INSERT INTO `sys_menu` VALUES (31, 27, 'admin/sysuser/resetPassword', '重置密码', '<i class=\'layui-icon layui-icon-refresh\'></i>', 'B', '#5fb878', 'resetPassword', 2, 1, 'id:{id}', 1109, '默认重置密码后为123456', 1);
+INSERT INTO `sys_menu` VALUES (32, 1, 'admin/sysconfig/index', '配置管理', '<i class=\'layui-icon layui-icon-set-sm\'></i>', 'M', '', '', 1, 0, '', 1500, '', 1);
+INSERT INTO `sys_menu` VALUES (33, 32, 'admin/sysconfig/add', '新增', '<i class=\'layui-icon layui-icon-add-circle\'></i>', 'B', '', 'add', 1, 1, 'config_code:{config_code},config_name:{config_name}', 1501, '', 1);
+INSERT INTO `sys_menu` VALUES (34, 32, 'admin/sysconfig/del', '删除', '<i class=\'layui-icon layui-icon-delete\'></i>', 'B', '#FF5722', 'del', 2, 1, 'id:{id}', 1501, '', 1);
+INSERT INTO `sys_menu` VALUES (35, 32, 'admin/sysconfig/edit', '编辑', '<i class=\'layui-icon layui-icon-edit\'></i>', 'B', '', 'edit', 2, 1, 'id:{id}', 1509, '', 1);
+INSERT INTO `sys_menu` VALUES (36, 1, 'admin/syslog/index', '日志管理', '<i class=\'layui-icon layui-icon-file-b\'></i>', 'M', '', '', 1, 0, '', 1600, '', 1);
+INSERT INTO `sys_menu` VALUES (37, 32, 'admin/sysconfig/clearCache', '清除缓存', '<i class=\'layui-icon layui-icon-delete\'></i>', 'B', '#ff5722', 'clearCache', 1, 1, '', 1502, '', 1);
 
 -- ----------------------------
 -- Table structure for sys_role
